@@ -1,4 +1,4 @@
-const searchHAR = require('./searchHAR')
+const searchHAR = require('../helper/searchHAR')
 let Nightmare = require('nightmare')
 let harPlugin = require('nightmare-har-plugin')
 
