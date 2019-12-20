@@ -4,17 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/**/*.js"
+    "test": "mocha test/**/*.js",
+    "test-artcle":"mocha test/article/*.js",
+    "test-footer":"mocha test/footer/*.js",
+    "test-leftNav":"mocha test/leftNav/*.js",
+    "test-registry":"mocha test/registry/*.js"
   },
   "author": "",
-  "license": "ISC",
+  "license": "TKWW",
   "dependencies": {
     "chai": "^4.2.0",
     "chance": "^1.0.18",
     "electron": "^5.0.3",
+    "jquery": "^3.4.1",
     "mocha": "^6.2.0",
     "mochawesome": "^4.0.1",
     "nightmare": "^2.10.0",
     "nightmare-har-plugin": "^0.9.1"
+  },
+  "devDependencies": {
+    "config": "^3.2.2"
   }
 }
