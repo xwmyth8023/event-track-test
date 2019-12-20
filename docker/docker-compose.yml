@@ -1,0 +1,7 @@
+nightmareTest:
+  image: xothebump/xo-thebumplayout-event-tracking-automation
+  pid: "host"
+  privileged: true
+  volumes:
+  - ../mochawesome-report:/opt/app/current/mochawesome-report/
+  - ../screenshots:/opt/app/current/screenshots
