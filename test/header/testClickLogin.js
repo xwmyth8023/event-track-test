@@ -1,4 +1,5 @@
 'use strict';
+
 const config = require('config')
 const chai = require('chai')
 const Nightmare = require('nightmare')
@@ -12,7 +13,7 @@ let nightmare
 
 harPlugin.install(Nightmare)
 
-describe('Click The Bump Logo',function(){
+describe('Clicl Log In',function(){
   this.timeout('300s')
 
   let options = {
@@ -40,9 +41,9 @@ describe('Click The Bump Logo',function(){
       .waitForDevtools()
       .goto(homepageUrl)
       .wait(3000)
-      .wait(bumplayoutHeader.bumpLogo)
+      .wait(bumplayoutHeader.login)
       .resetHAR()
-      .click(bumplayoutHeader.bumpLogo)
+      .click(bumplayoutHeader.login)
       .wait(5000)
       .getHAR()
       .end()
@@ -59,8 +60,11 @@ describe('Click The Bump Logo',function(){
         let productFound = searchHAR.findProperty(result.entries, 'product', 'bump')
         expect(productFound, 'product property is not correct').to.be.true
 
-        let selectionFound = searchHAR.findProperty(result.entries, 'selection', 'the bump')
+        let selectionFound = searchHAR.findProperty(result.entries, 'selection', 'log in')
         expect(selectionFound, 'selection property is not correct').to.be.true
+
+        let userDecisionAreaFound = searchHAR.findProperty(result.entries, 'userDecisionArea', 'my account')
+        expect(userDecisionAreaFound, 'userDecisionArea property is not correct').to.be.true
 
         done()
 

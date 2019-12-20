@@ -12,7 +12,7 @@ let nightmare
 
 harPlugin.install(Nightmare)
 
-describe('Click The Bump Logo',function(){
+describe('Click Facebook',function(){
   this.timeout('300s')
 
   let options = {
@@ -40,14 +40,14 @@ describe('Click The Bump Logo',function(){
       .waitForDevtools()
       .goto(homepageUrl)
       .wait(3000)
-      .wait(bumplayoutHeader.bumpLogo)
+      .wait(bumplayoutHeader.facebook)
       .resetHAR()
-      .click(bumplayoutHeader.bumpLogo)
+      .click(bumplayoutHeader.facebook)
       .wait(5000)
       .getHAR()
       .end()
       .then((result)=>{
-        let eventFound = searchHAR.findEvent(result.entries, 'Menu Interaction');
+        let eventFound = searchHAR.findEvent(result.entries, "Menu Interaction");
         expect(eventFound, 'Analytics event did not fire').to.be.true;
         
         let placementFound = searchHAR.findProperty(result.entries,'placement','header')
@@ -59,7 +59,7 @@ describe('Click The Bump Logo',function(){
         let productFound = searchHAR.findProperty(result.entries, 'product', 'bump')
         expect(productFound, 'product property is not correct').to.be.true
 
-        let selectionFound = searchHAR.findProperty(result.entries, 'selection', 'the bump')
+        let selectionFound = searchHAR.findProperty(result.entries,'selection',"follow us > facebook")
         expect(selectionFound, 'selection property is not correct').to.be.true
 
         done()

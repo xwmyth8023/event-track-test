@@ -1,10 +1,11 @@
 'use strict';
+
 const config = require('config')
 const chai = require('chai')
 const Nightmare = require('nightmare')
 const harPlugin = require('nightmare-har-plugin')
 const searchHAR = require('../../helper/searchHAR')
-const bumplayoutHeader = require('../../helper/elements').bumpLayoutHeader
+const bumpLayoutNav = require('../../helper/elements').bumpLayoutNav
 
 let expect = chai.expect
 let homepageUrl = config.get('homePageUrl')
@@ -12,7 +13,7 @@ let nightmare
 
 harPlugin.install(Nightmare)
 
-describe('Click The Bump Logo',function(){
+describe('Click News On Left Navigation',function(){
   this.timeout('300s')
 
   let options = {
@@ -40,17 +41,17 @@ describe('Click The Bump Logo',function(){
       .waitForDevtools()
       .goto(homepageUrl)
       .wait(3000)
-      .wait(bumplayoutHeader.bumpLogo)
+      .wait(bumpLayoutNav.news)
       .resetHAR()
-      .click(bumplayoutHeader.bumpLogo)
+      .click(bumpLayoutNav.news)
       .wait(5000)
       .getHAR()
       .end()
       .then((result)=>{
-        let eventFound = searchHAR.findEvent(result.entries, 'Menu Interaction');
+        let eventFound = searchHAR.findEvent(result.entries, "Menu Interaction");
         expect(eventFound, 'Analytics event did not fire').to.be.true;
         
-        let placementFound = searchHAR.findProperty(result.entries,'placement','header')
+        let placementFound = searchHAR.findProperty(result.entries,'placement',"nav")
         expect(placementFound, 'placement property is not correct').to.be.true
 
         let platformFound = searchHAR.findProperty(result.entries, 'platform', 'desktop web')
@@ -59,7 +60,7 @@ describe('Click The Bump Logo',function(){
         let productFound = searchHAR.findProperty(result.entries, 'product', 'bump')
         expect(productFound, 'product property is not correct').to.be.true
 
-        let selectionFound = searchHAR.findProperty(result.entries, 'selection', 'the bump')
+        let selectionFound = searchHAR.findProperty(result.entries,'selection',"news")
         expect(selectionFound, 'selection property is not correct').to.be.true
 
         done()
